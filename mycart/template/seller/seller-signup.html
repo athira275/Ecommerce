@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title></title>
+</head>
+
+<body>
+
+  <form method="post" action="{% url 'seller_signup_view' %}">
+    {% csrf_token %}
+    <h2 style="text-align: center; background-color: #0072ff; color: white; padding: 20px 0;">Add New Admin To Hospital</h2>
+
+    <p style="text-align: center;">
+      <label for="first_name">First Name:</label><br>
+      <input type="text" id="first_name" name="first_name" placeholder="First Name" style="padding: 10px; border-radius: 15px;" required>
+    </p>
+
+    <p style="text-align: center;">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username" placeholder="Username" style="padding: 10px; border-radius: 15px;" required>
+    </p>
+
+    <p style="text-align: center;">
+      <label for="last_name">Last Name:</label><br>
+      <input type="text" id="last_name" name="last_name" placeholder="Last Name" style="padding: 10px; border-radius: 15px;" required>
+    </p>
+
+    <p style="text-align: center;">
+        <label for="last_name">Email</label><br>
+        <input type="email" id="Email" name="email" placeholder="Email" style="padding: 10px; border-radius: 15px;" required>
+      </p>
+
+    <p style="text-align: center;">
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password" placeholder="Password" style="padding: 10px; border-radius: 15px;" required>
+    </p>
+    <p style="text-align: center;">
+        <label for="password">RePassword:</label><br>
+        <input type="password" id="password" name="repassword" placeholder="Password" style="padding: 10px; border-radius: 15px;" required>
+      </p>
+
+    <p style="text-align: center;">
+      <input type="submit" value='Register' style="border: none; border-radius: 15px; padding: 10px; width: 50%; background-color: #0062cc; color: white; cursor: pointer;">
+    </p>
+
+    <p style="text-align: center;">
+      Already have an account? <a href="{% url 'seller_login_view' %}">Login here</a>
+    </p>
+  </form>
+  {% if messages %}
+  <ul>
+      {% for message in messages %}
+      <script>alert('message')</script>
+          <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+{% endif %}
+ 
+  
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Profile Picture</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>city</th>
+            <th>state</th>
+            <th>postal code</th>
+            <th>vehicle number</th>
+            <th>gender</th>
+            <th>Approve</th>
+            <th>Reject</th>
+          </tr>
+        </thead>
+        {% for d in delivery %}
+        <tr>
+          <td> {{d.user.first_name}}</td>
+          <td><img src="{{ d.profile_pic.url }}" alt="Profile Pic" height="80px" width="80px" /></td>
+          <td>{{d.phone_number}}</td>
+          <td>{{d.address}}</td>
+          <td>{{d.city}}</td>
+          <td>{{d.state}}</td>
+          <td>{{d.postal_code}}</td>
+          <td>{{d.vehicle_number}}</td>
+          <td>{{d.gender}}</td>
+          <td><a  href="{% url 'approve_delivery_view' d.id  %}">approve</span></a></td>
+          <td><a  href="{% url 'reject_seller_view' d.id  %}">Reject</a></td> 
+        </tr>
+        {% endfor %}
+      </table>   
+</body>
+</html>
+   

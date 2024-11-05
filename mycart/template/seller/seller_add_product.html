@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<body>
+    <h1>Add a New Product</h1>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <label for="product_name">Product Name:</label><br>
+        <input type="text" id="product_name" name="product_name" required maxlength="200"><br><br>
+
+        <label for="slug">Slug:</label><br>
+        <input type="text" id="slug" name="slug" required maxlength="200"><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" maxlength="1000"></textarea><br><br>
+
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price" required><br><br>
+
+        <label for="images">Product Image:</label><br>
+        <input type="file" id="images" name="images"><br><br>
+
+        <label for="stock">Stock:</label><br>
+        <input type="number" id="stock" name="stock" required><br><br>
+
+        <label for="is_avilable">Is Available:</label><br>
+        <input type="checkbox" id="is_avilable" name="is_avilable" checked><br><br>
+
+        <label for="category">Category:</label><br>
+        <select id="category" name="category" required>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.category_name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="sku">SKU:</label><br>
+        <input type="text" id="sku" name="sku" required maxlength="100"><br><br>
+
+        <label for="priority">Priority:</label><br>
+        <input type="number" id="priority" name="priority" required><br><br>
+
+        <input type="submit" value="Add Product">
+    </form>
+</body>
+</html>

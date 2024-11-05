@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Category</title>
+</head>
+<body>
+    <h1>Edit Category: {{ category.category_name }}</h1>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'edit_category' category.id %}">
+        {% csrf_token %}
+        
+        <label for="category_name">Category Name:</label><br>
+        <input type="text" id="category_name" name="category_name" value="{{ category.category_name }}" required maxlength="50"><br><br>
+
+        <label for="slug">Slug:</label><br>
+        <input type="text" id="slug" name="slug" value="{{ category.slug }}" required maxlength="100"><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" maxlength="225">{{ category.description }}</textarea><br><br>
+
+        <label for="cat_image">Category Image:</label><br>
+        {% if category.cat_image %}
+            <img src="{{ category.cat_image.url }}" alt="{{ category.category_name }}" width="100"><br><br>
+        {% endif %}
+        <input type="file" id="cat_image" name="cat_image"><br><br>
+
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

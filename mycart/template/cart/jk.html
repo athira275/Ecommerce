@@ -1,0 +1,61 @@
+<section></section>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tbody>
+            {% if not cart_items %}
+            <tr>
+                <td colspan="5" align="center">
+                    <p>Empty! You don’t have any products in your cart.</p>
+                    <a href="{% url 'shop' %}">Back to Shop</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <th>PRODUCT</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+                <th>ACTION</th>
+            </tr>
+            {% for item in cart_items %}
+            <tr>
+                <td>
+                    <p>{{item.product.product_name}}</p>
+                    <p><img src="{{item.product.images.url}}" alt="img" width="50"></p>
+                </td>
+                <td>
+                    <p>{{item.product.price}}</p>
+                </td>
+                <td>
+                    <a href="{% url 'decrement_item' item.product.id %}">-</a>
+                    <span>{{item.quantity}}</span>
+                    <a href="{% url 'increment_item' item.product.id %}">+</a>
+                </td>
+                <td>
+                    <p>{{item.sub_total}}</p>
+                </td>
+                <td>
+                    <a href="{% url 'remove_from_cart' item.product.id %}">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    {% if cart_items %}
+    <p>
+        <a href="{% url 'clear_cart' %}">Clear Cart</a> 
+        <a href="{% url 'shop' %}">Back To Shop</a> 
+
+        <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+
+    </p>
+    {% endif %}
+
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert('{{msg}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+</section>

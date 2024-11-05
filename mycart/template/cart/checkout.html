@@ -1,0 +1,51 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <h2>Checkout</h2>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.product_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Total: {{ cart_items|length }}</p>
+    <tr>
+        <td colspan="3">Total Amount:</td>
+        <td>{{ total_amount|floatformat:2 }}</td>
+    </tr>
+    <h2>Order Form</h2>
+    
+        <label for="firstname">First Name:</label><br>
+        <input type="text" id="firstname" name="firstname" required><br><br>
+
+        <label for="lastname">Last Name:</label><br>
+        <input type="text" id="lastname" name="lastname" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phonenumber">Phone Number:</label><br>
+        <input type="tel" id="phonenumber" name="phonenumber" required><br><br>
+
+        <label for="addressline1">Address Line 1:</label><br>
+        <input type="text" id="addressline1" name="addressline1" required><br><br>
+
+        <label for="addressline2">Address Line 2:</label><br>
+        <input type="text" id="addressline2" name="addressline2"><br><br>
+
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city" required><br><br>
+
+        <label for="ordernote">Order Note:</label><br>
+        <textarea id="ordernote" name="ordernote" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Place Order">
+    </form>
